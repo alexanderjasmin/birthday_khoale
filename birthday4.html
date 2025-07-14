@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Thiệp Mời Sinh Nhật</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: radial-gradient(ellipse at top, #fff0f5, #ffe4e1);
+      font-family: "Segoe UI", cursive;
+      color: #4b0082;
+      text-align: center;
+      padding: 30px;
+      overflow-x: hidden;
+    }
+
+    .card {
+      background-color: #ffffffcc;
+      border: 3px dashed #dda0dd;
+      border-radius: 24px;
+      max-width: 700px;
+      margin: auto;
+      padding: 40px;
+      box-shadow: 0 0 30px rgba(255, 192, 203, 0.6);
+      position: relative;
+      z-index: 2;
+    }
+
+    h1 {
+      font-size: 2em;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 1.2em;
+      margin: 15px 0;
+    }
+
+    .icon {
+      font-size: 1.5em;
+    }
+
+    .footer {
+      margin-top: 40px;
+      font-style: italic;
+      color: #8b008b;
+    }
+
+    .sparkles {
+      animation: sparkle 2s infinite alternate;
+    }
+
+    @keyframes sparkle {
+      0% { text-shadow: 0 0 5px #ffc0cb, 0 0 10px #ff69b4; }
+      100% { text-shadow: 0 0 15px #ff1493, 0 0 30px #ff69b4; }
+    }
+
+    .cake {
+      width: 150px;
+      margin: 0 auto 20px;
+      animation: float 2s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .confetti {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      background-image: url('https://i.gifer.com/Yz2h.gif');
+      background-repeat: repeat;
+      background-size: cover;
+      opacity: 0.3;
+    }
+
+    .stars {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .stars span {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      background: #fff;
+      border-radius: 50%;
+      animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(-100px) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh) scale(0.5);
+        opacity: 0;
+      }
+    }
+
+    .buttons {
+      margin-top: 30px;
+    }
+
+    .btn {
+      background-color: #ff69b4;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      font-size: 1em;
+      margin: 10px;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn:hover {
+      background-color: #ff1493;
+    }
+
+    .response {
+      font-weight: bold;
+      font-size: 1.3em;
+      margin-top: 20px;
+      color: #cc0066;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Nhạc nền -->
+  <audio id="birthdayMusic" loop>
+    <source src="https://cdn.pixabay.com/download/audio/2023/03/04/audio_c0403033d3.mp3?filename=happy-birthday-to-you-piano-13976.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    // Tự động phát nhạc khi tương tác
+    document.addEventListener('click', function () {
+      const music = document.getElementById('birthdayMusic');
+      if (music.paused) {
+        music.play().catch(() => {});
+      }
+    });
+
+    // Rơi sao ngẫu nhiên
+    window.onload = function () {
+      const starsContainer = document.querySelector('.stars');
+      for (let i = 0; i < 60; i++) {
+        const star = document.createElement("span");
+        star.style.left = Math.random() * 100 + "vw";
+        star.style.animationDuration = (2 + Math.random() * 3) + "s";
+        star.style.animationDelay = Math.random() * 5 + "s";
+        starsContainer.appendChild(star);
+      }
+    }
+
+    function respond(choice) {
+      const res = document.getElementById("responseText");
+      if (choice === 'yes') {
+        res.textContent = "🎉 Thật tuyệt vời!";
+      }
+    }
+  </script>
+
+  <!-- Hiệu ứng confetti + sao -->
+  <div class="confetti"></div>
+  <div class="stars"></div>
+
+  <!-- Nội dung thiệp -->
+  <div class="card">
+
+    <h1 class="sparkles">🎉 THIỆP MỜI DỰ SINH NHẬT 🎉</h1>
+    <p>(Càng đến càng vui – càng đi càng trẻ!)</p>
+
+    <p class="icon">👑 Nhân ngày đặc biệt sắp đến, ngày mà một năm chỉ đến đúng một lần trong đời...</p>
+
+    <p>Anh muốn hỏi Bổn Công Chúa một chuyện – cụ thể là nhiều chuyện!</p>
+
+    <p class="icon">👉 Ngày <strong>21.07.2025</strong>, NXY có bận gì không vậy ta</p>
+
+    <p>Anh hỏi vậy chứ làm gì có chuyện bận được, phải không nè 😆</p>
+
+    <p>Bởi vì… vào hôm đó, anh sẽ thổi nến và cắt bánh chào mừng sự kiện trọng đại:</p>
+
+    <p class="icon">👉 Anh chính thức... <strong>"trẻ" ra thêm một tuổi </strong> 😆 </p>
+
+    <p>✨ Trân trọng kính mời <strong>Thuý XĐ</strong></p>
+
+    <p>Tới dự bữa tiệc sinh nhật của anh, một buổi tiệc vui vẻ và siêu xịn! 🥳</p>
+
+    <p class="footer">💌 Mong lắm thay, mong lắm luôn!<br/></p>
+
+    <div class="buttons">
+      <p><strong>Thuý XĐ có đến không nhỉ?</strong></p>
+      <button class="btn" onclick="respond('yes')">Tất nhiên rồi!</button>
+      <div id="responseText" class="response"></div>
+    </div>
+  </div>
+</body>
+</html>
